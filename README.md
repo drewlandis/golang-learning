@@ -6,16 +6,16 @@ This repo is for learning Go.
 Download binaries from [here](https://golang.org/dl/).
 
 ## Compile
-* src/
+* golang-learning/
   * hello/
     * main.go
     * hello
 
 
-* `cd src/hello/`
+* `cd golang-learning/hello/`
 * `go build`
 
-`go build` will create the executable `hello` named after the project (directory name).  To run, all you need to do is type `./hello`!
+`go build` will create the executable `hello` named after the project (directory name).  To run, all you need to do is type: `./hello`
 
 ## Compile _and_ Run
 * `cd src/hello/`
