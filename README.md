@@ -29,3 +29,7 @@ Automatically format source code with:
 
 OR, automatically format source code _and_ write to the original file source instead of writing to the console:
 * `gofmt -w main.go`
+
+## Other useful helper executables
+* goimports --> `goimports -w main.go`
+  * detects and adds missing import files
