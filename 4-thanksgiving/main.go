@@ -24,14 +24,14 @@ func main() {
 		dateOfThanksgiving(i, &p)
 	}
 
-	prettyPrint(p, beginYear, endYear)
+	fmt.Println()
+	fmt.Println("Occurrence of Thanksgiving on each day between year ", beginYear, " and ", endYear)
+	p.prettyPrint()
 }
 
-func prettyPrint(p probability, beginYear int, endYear int) {
-	fmt.Println()
+func (p probability) prettyPrint() {
 	space := ""
 
-	fmt.Println("Occurrence of Thanksgiving on each day between year ", beginYear, " and ", endYear)
 	fmt.Println("date:  22   23   24   25   26   27   28")
 	fmt.Println("occ:  ", p.twentytwo, space, p.twentythree, space, p.twentyfour, space, p.twentyfive, space, p.twentysix, space, p.twentyseven, space, p.twentyeight)
 }
