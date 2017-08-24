@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sleeptest
+  namespace: test
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sleeptest
+    spec:
+      nodeSelector:
+        role: test-d3oc-minion
+      imagePullSecrets:
+        - name: registry
+      containers:
+        - name: sleeptest
+          image: quay.io/dlandis/sleeptest
+          imagePullPolicy: Always
+          lifecycle:
+            preStop:
+              exec:
+                command:
+                  - "/preStop.sh"
