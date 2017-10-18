@@ -1,6 +1,6 @@
 package main
 
-// This program will print "ping" forever. Hit enter to stop it.
+// This program will print "ping", "pong", "ping", etc. forever. Hit enter to stop it.
 /*
  * When pinger attempts to send a message on the channel, it will wait
  * until printer is ready to receive the message. (This is blocking)
@@ -11,19 +11,20 @@ import (
 	"time"
 )
 
-func pinger(c chan<- string) { // send only channel
+func pinger(c chan<- string) { // send-only channel
 	for i := 0; ; i++ {
 		c <- "ping"
 	}
 }
 
+// This could also be a send-only channel, but we made it bi-directional anyways...
 func ponger(c chan string) { // bi-directional channel
 	for i := 0; ; i++ {
 		c <- "pong"
 	}
 }
 
-func printer(c <-chan string) { // receive only channel
+func printer(c <-chan string) { // receive-only channel
 	for {
 		msg := <-c
 		fmt.Println(msg)

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"time"
 
 	"github.com/coreos/etcd/clientv3"
@@ -32,6 +33,15 @@ func main() {
 	timeout := 5 * time.Second
 
 	// Put
+	/*
+		ctx, cancel := context.WithTimeout(context.Background(), timeout)
+		_, err = cli.Put(ctx, "high-threat-score-foo3", "bar3")
+		cancel()
+		if err != nil {
+			fmt.Println("Put err:")
+			fmt.Println(err)
+		}
+	*/
 	/*
 		ctx, cancel := context.WithTimeout(context.Background(), timeout)
 		//pResp, err := cli.Put(ctx, "sample_key", "sample_value")
@@ -74,23 +84,25 @@ func main() {
 	//fmt.Println(string(gResp.Kvs[0].Value))
 
 	//fmt.Println(gResp.Kvs)
-	fmt.Println(len(gResp.Kvs))
+	//fmt.Println("gResp.Count")
+	//fmt.Println(gResp.Count)
 	for _, ev := range gResp.Kvs {
 		fmt.Printf("%s : %s\n", ev.Key, ev.Value)
 	}
+	fmt.Println("len:" + strconv.Itoa(len(gResp.Kvs)))
 
-	/*
-		// Delete
-		ctx3, cancel3 := context.WithTimeout(context.Background(), timeout)
-		//dResp, err := cli.Delete(ctx3, "settingsFileConverted")
-		//fmt.Println("dResp.Deleted settingsFileConverted")
-		//fmt.Println(dResp.Deleted)
-		dResp, err := cli.Delete(ctx3, "", clientv3.WithPrefix())
-		//dResp, err = cli.Delete(ctx3, "dab03e56-c7a8-11e6-a4e1-33ec88ecbc05", clientv3.WithPrefix())
-		fmt.Println("dResp.Deleted applianceUUID")
-		fmt.Println(dResp.Deleted)
-		cancel3()
-	*/
+	/* * /
+	// Delete
+	ctx3, cancel3 := context.WithTimeout(context.Background(), timeout)
+	//dResp, err := cli.Delete(ctx3, "settingsFileConverted")
+	//fmt.Println("dResp.Deleted settingsFileConverted")
+	//fmt.Println(dResp.Deleted)
+	dResp, err := cli.Delete(ctx3, "high-threat-score-", clientv3.WithPrefix())
+	//dResp, err = cli.Delete(ctx3, "dab03e56-c7a8-11e6-a4e1-33ec88ecbc05", clientv3.WithPrefix())
+	fmt.Println("dResp.Deleted applianceUUID")
+	fmt.Println(dResp.Deleted)
+	cancel3()
+	/* */
 
 	fmt.Println("\n")
 }
